@@ -1,6 +1,9 @@
 import zdClient from './../../libs/ZDClient.js';
 import dictionary from './../../i18n/dictionary.js';
 import childTemplate from './ChildTemplate.js';
+import {
+  splitIdentities
+} from './../../libs/Helper.js';
 
 let CLIENT = null;
 
@@ -37,6 +40,20 @@ const Child = {
   created() {
     // Get Zendesk client
     CLIENT = zdClient.getClient();
+
+    // Get ticket from prop
+    let ticket = this.$props.app_state.ticket;
+
+    // For search by identities
+    if (ticket.has_requester) {
+      let identities = ticket.data.requester.identities;
+      let splittedIdentities = splitIdentities(identities);
+
+      // TODO: Auto search by identities
+      console.log(splittedIdentities);
+    } else {
+      CLIENT.invoke('notify', this.app_state.dictionary.messages.no_ticket_requester, 'error');
+    }
   },
 
   /* ------------------------------------------------------------------------ */

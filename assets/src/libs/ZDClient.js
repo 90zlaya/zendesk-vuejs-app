@@ -3,6 +3,7 @@ let CONTEXT = null;
 let METADATA = null;
 let SETTINGS = null;
 let CURRENT_USER = null;
+let TICKET = null;
 
 const ZDClient = {
 
@@ -95,6 +96,38 @@ const ZDClient = {
   // Get app settings for given item
   getSettings(item) {
     return this.app.settings[item];
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  // Get ticket
+  async getTicket() {
+    let is_available = false;
+    let has_requester = false;
+
+    // Allowed locations for ticket
+    let allowedAppLocations = ['ticket_sidebar', 'new_ticket_sidebar'];
+
+    // Get current app location
+    let appLocation = this.app.context.location;
+
+    if (allowedAppLocations.includes(appLocation)) {
+      if (TICKET === null) {
+        TICKET = (await CLIENT.get('ticket'))['ticket'];
+      }
+
+      if (TICKET.requester !== undefined) {
+        has_requester = true;
+      }
+
+      is_available = true;
+    }
+
+    return {
+      is_available: is_available,
+      has_requester: has_requester,
+      data: TICKET
+    };
   },
 
   /* ------------------------------------------------------------------------ */

@@ -24,6 +24,7 @@ const App = {
       is_loading: true,
       state: {
         zd_instance: {},
+        ticket: {},
         dictionary: {},
       },
     };
@@ -41,13 +42,19 @@ const App = {
 
     // Get Zendesk instance
     this.state.zd_instance = zdClient.getInstance();
-    let locale = this.state.zd_instance.current_user.locale.replace(/-.+$/, '');
 
     // Set main dictionary language
+    let locale = this.state.zd_instance.current_user.locale.replace(/-.+$/, '');
     this.state.dictionary = dictionary[locale];
 
-    // Stop loader when content is properly loaded
-    this.is_loading = false;
+    // Get Ticket data
+    zdClient.getTicket().then((response) => {
+      // Add ticket to the state
+      this.state.ticket = response;
+
+      // Stop loader when content is properly loaded
+      this.is_loading = false;
+    });
   },
 
   /* ------------------------------------------------------------------------ */
