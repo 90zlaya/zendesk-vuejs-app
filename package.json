@@ -1,0 +1,6 @@
+{
+  "name": "vuejs-boilerplate",
+  "scripts": {
+    "start": "zat server -c ./.settings.json"
+  }
+}

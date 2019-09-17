@@ -1,9 +1,9 @@
 {
   "app": {
-    "description": "Play the famous zen tunes in your help desk.",
-    "name": "Buddha Machine"
+    "description": "Vue.js boilerplate for Zendesk applications",
+    "name": "Vue.js app"
   },
-  "loading": "Welcome to this Sample App",
+  "loading": "Welcome to this Vue.js app",
   "fetch": {
     "done": "Good",
     "fail": "failed to fetch information from the server"

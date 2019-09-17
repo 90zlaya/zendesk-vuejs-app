@@ -1,6 +1,9 @@
-import zdClient from '../libs/ZDClient.js';
-import dictionary from '../i18n/dictionary.js';
+import zdClient from './../libs/ZDClient.js';
+import dictionary from './../i18n/dictionary.js';
 import appTemplate from './AppTemplate.js';
+import child from './child/Child.js';
+
+let CLIENT = null;
 
 const App = {
 
@@ -10,15 +13,18 @@ const App = {
 
   /* ------------------------------------------------------------------------ */
 
-  components: {},
+  components: {
+    child: child,
+  },
 
   /* ------------------------------------------------------------------------ */
 
   data() {
     return {
-      dictionary: {},
+      is_loading: true,
       state: {
-        is_loading: true,
+        zd_instance: {},
+        dictionary: {},
       },
     };
   },
@@ -30,14 +36,18 @@ const App = {
   /* ------------------------------------------------------------------------ */
 
   created() {
-    let instance = zdClient.getInstance();
-    let locale = instance.current_user.locale.replace(/-.+$/, '');
+    // Get Zendesk client
+    CLIENT = zdClient.getClient();
+
+    // Get Zendesk instance
+    this.state.zd_instance = zdClient.getInstance();
+    let locale = this.state.zd_instance.current_user.locale.replace(/-.+$/, '');
 
     // Set main dictionary language
-    this.dictionary = dictionary[locale];
+    this.state.dictionary = dictionary[locale];
 
     // Stop loader when content is properly loaded
-    this.state.is_loading = this.stopLoading();
+    this.is_loading = false;
   },
 
   /* ------------------------------------------------------------------------ */
@@ -50,11 +60,7 @@ const App = {
 
   /* ------------------------------------------------------------------------ */
 
-  methods: {
-    stopLoading: function() {
-      return false;
-    }
-  },
+  methods: {},
 
   /* ------------------------------------------------------------------------ */
 

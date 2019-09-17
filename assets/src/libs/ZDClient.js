@@ -30,8 +30,8 @@ const ZDClient = {
   /* ------------------------------------------------------------------------ */
 
   /**
-   * Set getters for privite objects
-   */
+  * Set getters for privite objects
+  */
   app: {
     get client() {
       return CLIENT;
@@ -53,9 +53,9 @@ const ZDClient = {
   /* ------------------------------------------------------------------------ */
 
   /**
-   * It returns true if the app is installed in the instance, false if
-   * it's running locally
-   */
+  * It returns true if the app is installed in the instance, false if
+  * it's running locally
+  */
   isProduction() {
     return !!this.app.settings['IS_PRODUCTION'];
   },
@@ -63,12 +63,19 @@ const ZDClient = {
   /* ------------------------------------------------------------------------ */
 
   /**
-   * It sets the frame height using on the passed value.
-   * If no value has been passed, 80 will be set as default heigth.
-   * @param {Int} newHeight
-   */
+  * It sets the frame height using on the passed value.
+  * If no value has been passed, 80 will be set as default heigth.
+  * @param {Int} newHeight
+  */
   resizeFrame(appHeight) {
     CLIENT.invoke('resize', {width: '100%', height: `${appHeight}px`});
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  // Get Zendesk Client
+  getClient() {
+    return this.app.client;
   },
 
   /* ------------------------------------------------------------------------ */
@@ -76,9 +83,9 @@ const ZDClient = {
   // Get zdClient Instance
   getInstance() {
     return {
-      client: this.app.client,
       context: this.app.context,
       metadata: this.app.metadata,
+      settings: this.app.settings,
       current_user: this.app.currentUser,
     };
   },
