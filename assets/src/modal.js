@@ -22,8 +22,8 @@ const Main = {
         el: '#modalContainer',
         render: h => h(modal, {
           props: {
-            modal_state: state
-          }
+            app_state: state
+          },
         }),
       });
     });

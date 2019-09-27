@@ -21,18 +21,14 @@ const App = {
 
   data() {
     return {
-      is_loading: true,
       state: {
+        is_loading: true,
         zd_instance: {},
         ticket: {},
         dictionary: {},
       },
     };
   },
-
-  /* ------------------------------------------------------------------------ */
-
-  computed: {},
 
   /* ------------------------------------------------------------------------ */
 
@@ -47,14 +43,8 @@ const App = {
     let locale = this.state.zd_instance.current_user.locale.replace(/-.+$/, '');
     this.state.dictionary = dictionary[locale];
 
-    // Get Ticket data
-    zdClient.getTicket().then((response) => {
-      // Add ticket to the state
-      this.state.ticket = response;
-
-      // Stop loader when content is properly loaded
-      this.is_loading = false;
-    });
+    // Initialise app
+    this.initApp();
   },
 
   /* ------------------------------------------------------------------------ */
@@ -67,7 +57,22 @@ const App = {
 
   /* ------------------------------------------------------------------------ */
 
-  methods: {},
+  computed: {},
+
+  /* ------------------------------------------------------------------------ */
+
+  methods: {
+    initApp() {
+      // Get Ticket data
+      zdClient.getTicket().then((response) => {
+        // Add ticket to the state
+        this.state.ticket = response;
+
+        // Stop loader when content is properly loaded
+        this.state.is_loading = false;
+      });
+    },
+  },
 
   /* ------------------------------------------------------------------------ */
 

@@ -1,7 +1,9 @@
 const modalTemplate = `
   <div>
-    <p>{{ modal_state.dictionary.hello_modal }}</p>
-    <button v-on:click="updateData();">{{ modal_state.dictionary.update }}</button>
+    <p>{{ app_state.dictionary.examples.hello_modal }}</p>
+    <button
+      v-on:click="updateData();"
+    >{{ app_state.dictionary.examples.update }}</button>
   </div>
 `;
 

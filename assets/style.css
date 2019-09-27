@@ -2,7 +2,23 @@
 /* --- Elements ------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
 body {
-  font-size: 12px;
+  font-family: inherit;
+  font-size: 0.9em;
+}
+
+table {
+  font-size: 0.9em;
+}
+
+th {
+  font-weight: bold;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -16,7 +32,7 @@ body {
   margin: 0;
   position: relative;
   top: 50%;
-  left: 42%;
+  left: 45%;
   width: 60px;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);

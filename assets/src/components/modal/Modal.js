@@ -1,5 +1,4 @@
 import zdClient from './../../libs/ZDClient.js';
-import dictionary from './../../i18n/dictionary.js';
 import modalTemplate from './ModalTemplate.js';
 
 let CLIENT = null;
@@ -13,7 +12,7 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   props: {
-    modal_state: Object,
+    app_state: Object,
   },
 
   /* ------------------------------------------------------------------------ */
@@ -23,14 +22,8 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {
-      state: {},
-    };
+    return {};
   },
-
-  /* ------------------------------------------------------------------------ */
-
-  computed: {},
 
   /* ------------------------------------------------------------------------ */
 
@@ -49,11 +42,15 @@ const Modal = {
 
   /* ------------------------------------------------------------------------ */
 
+  computed: {},
+
+  /* ------------------------------------------------------------------------ */
+
   methods: {
-    updateData: function() {
+    updateData() {
       console.log('Would update data');
 
-      let appLocation = this.$props.modal_state.zd_instance.context.location;
+      let appLocation = this.app_state.zd_instance.context.location;
       let appClientPromise = CLIENT.get("instances").then((instancesData) => {
         let instances = instancesData.instances;
 

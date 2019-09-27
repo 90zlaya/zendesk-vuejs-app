@@ -1,5 +1,4 @@
 import zdClient from './../../libs/ZDClient.js';
-import dictionary from './../../i18n/dictionary.js';
 import childTemplate from './ChildTemplate.js';
 import {
   splitIdentities
@@ -26,14 +25,8 @@ const Child = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {
-      state: {},
-    };
+    return {};
   },
-
-  /* ------------------------------------------------------------------------ */
-
-  computed: {},
 
   /* ------------------------------------------------------------------------ */
 
@@ -42,7 +35,7 @@ const Child = {
     CLIENT = zdClient.getClient();
 
     // Get ticket from prop
-    let ticket = this.$props.app_state.ticket;
+    let ticket = this.app_state.ticket;
 
     // For search by identities
     if (ticket.has_requester) {
@@ -50,9 +43,12 @@ const Child = {
       let splittedIdentities = splitIdentities(identities);
 
       // TODO: Auto search by identities
-      console.log(splittedIdentities);
     } else {
-      CLIENT.invoke('notify', this.app_state.dictionary.messages.no_ticket_requester, 'error');
+      CLIENT.invoke(
+        'notify',
+        this.app_state.dictionary.examples.messages.no_ticket_requester,
+        'error'
+      );
     }
   },
 
@@ -66,30 +62,34 @@ const Child = {
 
   /* ------------------------------------------------------------------------ */
 
+  computed: {},
+
+  /* ------------------------------------------------------------------------ */
+
   methods: {
-    openModal: function() {
+    openModal() {
       CLIENT.invoke('instances.create', {
         location: 'modal',
-        url: `assets/html/modal.html#parent_guid=${ CLIENT._instanceGuid }`,
+        url: `assets/modal.html#parent_guid=${ CLIENT._instanceGuid }`,
         size: {
           width: '350px',
           height: '300px'
         }
-      }).then(async function(modalContext) {
+      }).then(async (modalContext) => {
         let instanceGuid = modalContext['instances.create'][0].instanceGuid;
         let modalClient = CLIENT.instance(instanceGuid);
 
         CLIENT.on('modalEdited', this.editModal);
 
-        modalClient.on('modalReady', function() {
+        modalClient.on('modalReady', () => {
           // Pass data to modal here
-          let data = this.$props.app_state;
+          let data = this.app_state;
 
           modalClient.trigger('drawData', data);
-        }.bind(this));
-      }.bind(this));
+        });
+      });
     },
-    editModal: async function(args) {
+    async editModal(args) {
       const EVENT_FLAG = await CLIENT.has('modalEdited', this.editModal);
 
       if (EVENT_FLAG){
