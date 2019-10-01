@@ -1,5 +1,6 @@
 export default {
   en: {
+    print_me: 'Print Me',
     examples: {
       hello_world: 'Hello World',
       hello_modal: 'Hello World from modal box',
