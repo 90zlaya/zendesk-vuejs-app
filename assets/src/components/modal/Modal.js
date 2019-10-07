@@ -1,5 +1,5 @@
 import zdClient from './../../libs/ZDClient.js';
-import modalTemplate from './ModalTemplate.js';
+import ModalTemplate from './ModalTemplate.js';
 
 let CLIENT = null;
 
@@ -7,7 +7,7 @@ const Modal = {
 
   /* ------------------------------------------------------------------------ */
 
-  template: modalTemplate,
+  template: ModalTemplate,
 
   /* ------------------------------------------------------------------------ */
 
@@ -22,7 +22,9 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {};
+    return {
+      data: {},
+    };
   },
 
   /* ------------------------------------------------------------------------ */
@@ -47,31 +49,36 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   methods: {
-    updateData() {
-      console.log('Would update data');
+    update() {
+      console.log('Would update');
 
-      let appLocation = this.app_state.zd_instance.context.location;
-      let appClientPromise = CLIENT.get("instances").then((instancesData) => {
+      // Set data to be passed from modal
+      this.data = {
+        test: 'This is test arg'
+      };
+
+      // Trigger modal edit logic
+      this.triggerModalEdited();
+    },
+    triggerModalEdited() {
+      // Get instance, trigger modal edited and close modal box
+      CLIENT.get('instances').then((instancesData) => {
+        let appClient = null;
         let instances = instancesData.instances;
+        let appLocation = this.app_state.zd_instance.context.location;
 
         for (let instanceGuid in instances) {
           if (instances[instanceGuid].location === appLocation) {
-            return CLIENT.instance(instanceGuid);
+            appClient = CLIENT.instance(instanceGuid);
+            break;
           }
         }
-      });
 
-      appClientPromise.then((appClient) => {
-        // Pass data from modal here
-        let data = {
-          test: 'This is test arg'
-        };
-
-        appClient.trigger('modalEdited', data);
+        appClient.trigger('modalEdited', this.data);
 
         CLIENT.invoke('destroy');
       });
-    }
+    },
   },
 
   /* ------------------------------------------------------------------------ */

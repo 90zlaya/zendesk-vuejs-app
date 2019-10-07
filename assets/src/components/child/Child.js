@@ -1,5 +1,5 @@
 import zdClient from './../../libs/ZDClient.js';
-import childTemplate from './ChildTemplate.js';
+import ChildTemplate from './ChildTemplate.js';
 import {
   splitIdentities
 } from './../../libs/Helper.js';
@@ -10,7 +10,7 @@ const Child = {
 
   /* ------------------------------------------------------------------------ */
 
-  template: childTemplate,
+  template: ChildTemplate,
 
   /* ------------------------------------------------------------------------ */
 
@@ -25,7 +25,9 @@ const Child = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {};
+    return {
+      data_from_modal: {},
+    };
   },
 
   /* ------------------------------------------------------------------------ */
@@ -33,7 +35,11 @@ const Child = {
   created() {
     // Get Zendesk client
     CLIENT = zdClient.getClient();
+  },
 
+  /* ------------------------------------------------------------------------ */
+
+  mounted() {
     // Get ticket from prop
     let ticket = this.app_state.ticket;
 
@@ -51,10 +57,6 @@ const Child = {
       );
     }
   },
-
-  /* ------------------------------------------------------------------------ */
-
-  mounted() {},
 
   /* ------------------------------------------------------------------------ */
 
@@ -90,6 +92,8 @@ const Child = {
       });
     },
     async editModal(args) {
+      this.data_from_modal = args;
+
       const EVENT_FLAG = await CLIENT.has('modalEdited', this.editModal);
 
       if (EVENT_FLAG){

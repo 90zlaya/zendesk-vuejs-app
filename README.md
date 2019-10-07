@@ -1,13 +1,13 @@
-# Vue.js boilerplate
+# vuejs-boilerplate
 > Vue.js boilerplate for custom Zendesk apps
 
-## Build Setup
+## build setup
 
 ``` bash
 # to run app locally
-$ npm start
+npm start
 
 # to create package
-$ zat validate
-$ zat package
+zat validate
+zat package
 ```

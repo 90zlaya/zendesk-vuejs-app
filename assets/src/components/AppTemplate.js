@@ -1,4 +1,4 @@
-const appTemplate = `
+const AppTemplate = `
   <div>
     <div v-if="!state.is_loading" class="container">
       <h1>{{ message_from_vuex_state }}</h1>
@@ -11,4 +11,4 @@ const appTemplate = `
   </div>
 `;
 
-export default appTemplate;
+export default AppTemplate;

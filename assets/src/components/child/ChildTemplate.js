@@ -1,4 +1,4 @@
-const childTemplate = `
+const ChildTemplate = `
   <div>
     <p>{{ app_state.dictionary.examples.hello_world }}</p>
     <button
@@ -7,4 +7,4 @@ const childTemplate = `
   </div>
 `;
 
-export default childTemplate;
+export default ChildTemplate;

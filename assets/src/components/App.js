@@ -1,7 +1,7 @@
 import zdClient from './../libs/ZDClient.js';
 import dictionary from './../i18n/dictionary.js';
-import appTemplate from './AppTemplate.js';
-import child from './child/Child.js';
+import AppTemplate from './AppTemplate.js';
+import Child from './child/Child.js';
 
 let CLIENT = null;
 
@@ -9,12 +9,12 @@ const App = {
 
   /* ------------------------------------------------------------------------ */
 
-  template: appTemplate,
+  template: AppTemplate,
 
   /* ------------------------------------------------------------------------ */
 
   components: {
-    child: child,
+    'child': Child,
   },
 
   /* ------------------------------------------------------------------------ */
@@ -42,14 +42,14 @@ const App = {
     // Set main dictionary language
     let locale = this.state.zd_instance.current_user.locale.replace(/-.+$/, '');
     this.state.dictionary = dictionary[locale];
-
-    // Initialise app
-    this.initApp();
   },
 
   /* ------------------------------------------------------------------------ */
 
-  mounted() {},
+  mounted() {
+    // Initialise app
+    this.initApp();
+  },
 
   /* ------------------------------------------------------------------------ */
 
