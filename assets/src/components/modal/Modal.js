@@ -22,9 +22,7 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {
-      data: {},
-    };
+    return {};
   },
 
   /* ------------------------------------------------------------------------ */
@@ -53,14 +51,14 @@ const Modal = {
       console.log('Would update');
 
       // Set data to be passed from modal
-      this.data = {
+      let data = {
         test: 'This is test arg'
       };
 
       // Trigger modal edit logic
       this.triggerModalEdited();
     },
-    triggerModalEdited() {
+    triggerModalEdited(data) {
       // Get instance, trigger modal edited and close modal box
       CLIENT.get('instances').then((instancesData) => {
         let appClient = null;
@@ -74,7 +72,7 @@ const Modal = {
           }
         }
 
-        appClient.trigger('modalEdited', this.data);
+        appClient.trigger('modalEdited', data);
 
         CLIENT.invoke('destroy');
       });

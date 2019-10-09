@@ -1,7 +1,7 @@
 import zdClient from './../../libs/ZDClient.js';
 import ChildTemplate from './ChildTemplate.js';
 import {
-  splitIdentities
+  splitIdentities,
 } from './../../libs/Helper.js';
 
 let CLIENT = null;
