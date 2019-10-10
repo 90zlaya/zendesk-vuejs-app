@@ -6,9 +6,8 @@
 * @param {Object} identities
 *
 * @return {Object}
-*
 */
-export function splitIdentities(identities) {
+export let splitIdentities = (identities) => {
   let emails = [];
   let phones = [];
   let primaries = {
@@ -51,28 +50,28 @@ export function splitIdentities(identities) {
 *
 * @return void
 */
-export function clickableTabs() {
-  $(".c-tab__list__item").unbind("click");
-  $(".c-tab__list__item").click(function() {
-    let $parent = $(this).parent(".c-tab__list");
-    let id = $(this).attr("id");
+export let clickableTabs = () => {
+  $('.c-tab__list__item').unbind('click');
+  $('.c-tab__list__item').click((event) => {
+    let $parent = $(event.currentTarget).parent('.c-tab__list');
+    let id = $(event.currentTarget).attr('id');
     if ($parent.length) {
-      $parent.children(".c-tab__list__item").removeClass("is-selected");
-      $(this).addClass("is-selected");
+      $parent.children('.c-tab__list__item').removeClass('is-selected');
+      $(event.currentTarget).addClass('is-selected');
       $parent
         .parent()
-        .children(".c-tab__panel")
-        .attr("aria-hidden", true);
+        .children('.c-tab__panel')
+        .attr('aria-hidden', true);
       $parent
         .parent()
-        .children("[aria-labelledby='" + id + "']")
-        .attr("aria-hidden", false);
+        .children(`[aria-labelledby='${ id }']`)
+        .attr('aria-hidden', false);
     }
   });
-  $(".close_tab")
-    .off("click")
-    .click(function() {
-      closeTab($(this).attr("data-id"));
+  $('close_tab')
+    .off('click')
+    .click((event) => {
+      closeTab($(event.currentTarget).attr('data-id'));
   });
 }
 
