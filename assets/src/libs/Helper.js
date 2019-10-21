@@ -76,3 +76,35 @@ export let clickableTabs = () => {
 }
 
 /* -------------------------------------------------------------------------- */
+
+/**
+* Format variables
+*/
+export let format = {
+  number(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  },
+  currency(num) {
+    if (num === null) {
+      return ``;
+    } else {
+      let formattedNumber = this.number(num);
+
+      return `$ ${ formattedNumber }`;
+    }
+  },
+  date(date, locale) {
+    locale = locale ? locale : 'en-US';
+
+    let cdate = new Date(date);
+    let options = {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    };
+
+    return cdate.toLocaleDateString(locale, options);
+  },
+}
+
+/* -------------------------------------------------------------------------- */

@@ -8,7 +8,6 @@ const Main = {
   /* ------------------------------------------------------------------------ */
 
   init() {
-    console.clear();
     zdClient.init();
     zdClient.events['ON_APP_REGISTERED'](this.initVueApp);
   },
