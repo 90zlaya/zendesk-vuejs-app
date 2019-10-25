@@ -52,7 +52,7 @@ const child = {
     } else {
       CLIENT.invoke(
         'notify',
-        $t('examples.messages.no_ticket_requester'),
+        this.$t('examples.messages.no_ticket_requester'),
         'error'
       );
     }
@@ -72,7 +72,7 @@ const child = {
     openModal() {
       CLIENT.invoke('instances.create', {
         location: 'modal',
-        url: `assets/html/modal.html#parent_guid=${ CLIENT._instanceGuid }`,
+        url: `assets/iframeModal.html#parent_guid=${ CLIENT._instanceGuid }`,
         size: {
           width: '350px',
           height: '300px'

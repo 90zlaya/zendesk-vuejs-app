@@ -6,7 +6,7 @@ const appTemplate = `
       <child :app_state=state></child>
     </div>
     <div v-if="state.is_loading" class="loader">
-      <img src="./../img/dots.gif" />
+      <img src="./dots.gif" />
     </div>
   </div>
 `;

@@ -1,6 +1,6 @@
-import app from './../src/components/app.js';
-import zdClient from './../src/libs/zdClient.js';
-import i18n from './../src/i18n/index.js';
+import zdClient from './libs/zdClient.js';
+import i18n from './i18n/i18n.js';
+import app from './components/app.js';
 
 const main = {
 

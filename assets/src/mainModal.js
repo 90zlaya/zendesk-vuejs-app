@@ -1,10 +1,10 @@
-import modal from './../src/components/modal/modal.js';
-import zdClient from './../src/libs/zdClient.js';
-import i18n from './../src/i18n/index.js';
+import zdClient from './libs/zdClient.js';
+import i18n from './i18n/i18n.js';
+import modal from './components/modal/modal.js';
 
 let CLIENT = null;
 
-const main = {
+const mainModal = {
 
   /* ------------------------------------------------------------------------ */
 
@@ -38,4 +38,4 @@ const main = {
 
 };
 
-export default main.init();
+export default mainModal.init();
