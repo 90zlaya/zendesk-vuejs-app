@@ -1,18 +1,19 @@
 import dictionary from './dictionary.js';
 
-export default {
+const i18n = {
 
   /* ------------------------------------------------------------------------ */
 
   install(Vue, options) {
-    const t = options && options.locale
-      ? dictionary[options.locale] || dictionary['en']
-      : dictionary['en'];
+    const t =
+      options && options.locale
+        ? dictionary[options.locale.split('-')[0]] || dictionary['en']
+        : dictionary['en'];
 
     const RTL_LOCALES = ['ar', 'he'];
 
     Vue.prototype.$t = (key) => {
-      return t[key] || '';
+      return this.getObjProperty(t, key) || '';
     };
 
     Vue.prototype.$rtl = () => {
@@ -21,7 +22,13 @@ export default {
         : 'ltr';
     };
   },
+  getObjProperty(object, propertyName) {
+    return propertyName.split('.').reduce((a, b) => {
+      return a[b];
+    }, object);
+  },
 
   /* ------------------------------------------------------------------------ */
-
 };
+
+export default i18n;

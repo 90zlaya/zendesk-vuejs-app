@@ -1,28 +1,33 @@
-import zdClient from './../src/libs/ZDClient.js';
+import modal from './../src/components/modal/modal.js';
+import zdClient from './../src/libs/zdClient.js';
 import i18n from './../src/i18n/index.js';
-import modal from './../src/components/modal/Modal.js';
 
-const Main = {
+let CLIENT = null;
+
+const main = {
 
   /* ------------------------------------------------------------------------ */
 
   init() {
     zdClient.init();
+    CLIENT = zdClient.getClient();
     zdClient.events['ON_APP_REGISTERED'](this.initVueApp);
   },
 
   /* ------------------------------------------------------------------------ */
 
   initVueApp() {
-    zdClient.getClient().trigger('modalReady');
-    zdClient.getClient().on('drawData', (state) => {
-      Vue.use(i18n);
+    CLIENT.trigger('modalReady');
+    CLIENT.on('drawData', (data) => {
+      let currentUser = zdClient.getInstance()['current_user'];
+
+      Vue.use(i18n, currentUser);
 
       new Vue({
-        el: '#modalContainer',
+        el: '#modal',
         render: h => h(modal, {
           props: {
-            app_state: state
+            app_state: data,
           },
         }),
       });
@@ -33,4 +38,4 @@ const Main = {
 
 };
 
-export default Main.init();
+export default main.init();

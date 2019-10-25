@@ -1,9 +1,8 @@
-import App from './components/App.js';
-import zdClient from './libs/ZDClient.js';
-import i18n from './i18n/index.js';
-import store from './store/store.js';
+import app from './../src/components/app.js';
+import zdClient from './../src/libs/zdClient.js';
+import i18n from './../src/i18n/index.js';
 
-const Main = {
+const main = {
 
   /* ------------------------------------------------------------------------ */
 
@@ -15,11 +14,13 @@ const Main = {
   /* ------------------------------------------------------------------------ */
 
   initVueApp() {
-    Vue.use(i18n);
+    let currentUser = zdClient.getInstance()['current_user'];
+
+    Vue.use(i18n, currentUser);
+
     new Vue({
       el: '#app',
-      store,
-      render: h => h(App),
+      render: h => h(app),
     });
   },
 
@@ -27,4 +28,4 @@ const Main = {
 
 };
 
-export default Main.init();
+export default main.init();

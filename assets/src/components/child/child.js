@@ -1,16 +1,16 @@
-import zdClient from './../../libs/ZDClient.js';
-import ChildTemplate from './ChildTemplate.js';
+import zdClient from './../../libs/zdClient.js';
+import childTemplate from './childTemplate.js';
 import {
   splitIdentities,
-} from './../../libs/Helper.js';
+} from './../../libs/helper.js';
 
 let CLIENT = null;
 
-const Child = {
+const child = {
 
   /* ------------------------------------------------------------------------ */
 
-  template: ChildTemplate,
+  template: childTemplate,
 
   /* ------------------------------------------------------------------------ */
 
@@ -52,7 +52,7 @@ const Child = {
     } else {
       CLIENT.invoke(
         'notify',
-        this.app_state.dictionary.examples.messages.no_ticket_requester,
+        $t('examples.messages.no_ticket_requester'),
         'error'
       );
     }
@@ -72,7 +72,7 @@ const Child = {
     openModal() {
       CLIENT.invoke('instances.create', {
         location: 'modal',
-        url: `assets/modal.html#parent_guid=${ CLIENT._instanceGuid }`,
+        url: `assets/html/modal.html#parent_guid=${ CLIENT._instanceGuid }`,
         size: {
           width: '350px',
           height: '300px'
@@ -106,4 +106,4 @@ const Child = {
 
 };
 
-export default Child;
+export default child;

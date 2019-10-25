@@ -1,20 +1,19 @@
-import zdClient from './../libs/ZDClient.js';
-import dictionary from './../i18n/dictionary.js';
-import AppTemplate from './AppTemplate.js';
-import Child from './child/Child.js';
+import zdClient from './../libs/zdClient.js';
+import appTemplate from './appTemplate.js';
+import child from './child/child.js';
 
 let CLIENT = null;
 
-const App = {
+const app = {
 
   /* ------------------------------------------------------------------------ */
 
-  template: AppTemplate,
+  template: appTemplate,
 
   /* ------------------------------------------------------------------------ */
 
   components: {
-    'child': Child,
+    'child': child,
   },
 
   /* ------------------------------------------------------------------------ */
@@ -25,7 +24,6 @@ const App = {
         is_loading: true,
         zd_instance: {},
         ticket: {},
-        dictionary: {},
       },
     };
   },
@@ -38,10 +36,6 @@ const App = {
 
     // Get Zendesk instance
     this.state.zd_instance = zdClient.getInstance();
-
-    // Set main dictionary language
-    let locale = this.state.zd_instance.current_user.locale.replace(/-.+$/, '');
-    this.state.dictionary = dictionary[locale];
   },
 
   /* ------------------------------------------------------------------------ */
@@ -57,10 +51,7 @@ const App = {
 
   /* ------------------------------------------------------------------------ */
 
-  computed: {
-    ...Vuex.mapState(['message_from_vuex_state']),
-    ...Vuex.mapState(['hardcoded_value']),
-  },
+  computed: {},
 
   /* ------------------------------------------------------------------------ */
 
@@ -81,4 +72,4 @@ const App = {
 
 };
 
-export default App;
+export default app;

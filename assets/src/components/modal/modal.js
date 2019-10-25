@@ -1,13 +1,13 @@
-import zdClient from './../../libs/ZDClient.js';
-import ModalTemplate from './ModalTemplate.js';
+import zdClient from './../../libs/zdClient.js';
+import modalTemplate from './modalTemplate.js';
 
 let CLIENT = null;
 
-const Modal = {
+const modal = {
 
   /* ------------------------------------------------------------------------ */
 
-  template: ModalTemplate,
+  template: modalTemplate,
 
   /* ------------------------------------------------------------------------ */
 
@@ -83,4 +83,4 @@ const Modal = {
 
 };
 
-export default Modal;
+export default modal;
