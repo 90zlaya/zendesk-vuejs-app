@@ -132,6 +132,32 @@ const ZDClient = {
 
   /* ------------------------------------------------------------------------ */
 
+  // Get user
+  async getUser() {
+    return (await CLIENT.get('user'))['user'];
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  async getCustomField(fieldId, type) {
+    switch (type) {
+      case 'VALUE': {
+        let location = `ticket.customField:custom_field_${ fieldId }`;
+        let value = (await CLIENT.get(location))[location];
+
+        return value;
+      }
+      case 'FIELD': {
+        let location = `/api/v2/ticket_fields/${ fieldId }.json`;
+        let ticketField = (await CLIENT.request(location))['ticket_field'];
+
+        return ticketField;
+      }
+    }
+  },
+
+  /* ------------------------------------------------------------------------ */
+
 };
 
 export default ZDClient;

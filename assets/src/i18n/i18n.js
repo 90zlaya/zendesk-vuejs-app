@@ -5,15 +5,11 @@ const i18n = {
   /* ------------------------------------------------------------------------ */
 
   install(Vue, options) {
-    const t =
-      options && options.locale
-        ? dictionary[options.locale.split('-')[0]] || dictionary['en']
-        : dictionary['en'];
-
+    const t = this.getTranslation(options);
     const RTL_LOCALES = ['ar', 'he'];
 
-    Vue.prototype.$t = (key) => {
-      return this.getObjProperty(t, key) || '';
+    Vue.prototype.$t = (key, parameters) => {
+      return this.getTranslationLine(t, key, parameters) || '';
     };
 
     Vue.prototype.$rtl = () => {
@@ -22,10 +18,28 @@ const i18n = {
         : 'ltr';
     };
   },
-  getObjProperty(object, propertyName) {
-    return propertyName.split('.').reduce((a, b) => {
+  getTranslationLine(translation, propertyName, propertyParameters) {
+    let line = propertyName.split('.').reduce((a, b) => {
       return a[b];
-    }, object);
+    }, translation);
+
+    if (propertyParameters === undefined) {
+      return line;
+    } else {
+      let key = Object.keys(propertyParameters);
+      let value = Object.values(propertyParameters);
+      let replaced = line.replace(`{${ key }}`, value);
+
+      return replaced;
+    }
+  },
+  getTranslation(options) {
+    const translation =
+      options && options.locale
+        ? dictionary[options.locale.split('-')[0]] || dictionary['en']
+        : dictionary['en'];
+
+    return translation;
   },
 
   /* ------------------------------------------------------------------------ */
