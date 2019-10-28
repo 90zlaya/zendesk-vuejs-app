@@ -27,6 +27,7 @@ const child = {
   data() {
     return {
       data_from_modal: {},
+      title: '',
     };
   },
 
@@ -93,6 +94,10 @@ const child = {
     },
     async editModal(args) {
       this.data_from_modal = args;
+
+      this.title = this.$t('examples.hello_world_from_name', {
+        name: this.data_from_modal.form.name,
+      });
 
       const EVENT_FLAG = await CLIENT.has('modalEdited', this.editModal);
 

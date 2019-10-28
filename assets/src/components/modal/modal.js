@@ -22,7 +22,14 @@ const modal = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {};
+    return {
+      form: {
+        name: '',
+      },
+      triggers: {
+        is_update_disabled: true,
+      },
+    };
   },
 
   /* ------------------------------------------------------------------------ */
@@ -47,16 +54,21 @@ const modal = {
   /* ------------------------------------------------------------------------ */
 
   methods: {
+    enableUpdate() {
+      if (this.form.name.length > 0) {
+        this.triggers.is_update_disabled = false;
+      } else {
+        this.triggers.is_update_disabled = true;
+      }
+    },
     update() {
-      console.log('Would update');
-
       // Set data to be passed from modal
       let data = {
-        test: 'This is test arg'
+        form: this.form,
       };
 
       // Trigger modal edit logic
-      this.triggerModalEdited();
+      this.triggerModalEdited(data);
     },
     triggerModalEdited(data) {
       // Get instance, trigger modal edited and close modal box

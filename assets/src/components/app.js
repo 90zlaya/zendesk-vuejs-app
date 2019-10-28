@@ -56,15 +56,15 @@ const app = {
   /* ------------------------------------------------------------------------ */
 
   methods: {
-    initApp() {
+    async initApp() {
       // Get Ticket data
-      zdClient.getTicket().then((response) => {
-        // Add ticket to the state
-        this.state.ticket = response;
+      let ticket = await zdClient.getTicket();
 
-        // Stop loader when content is properly loaded
-        this.state.is_loading = false;
-      });
+      // Add ticket to the state
+      this.state.ticket = ticket;
+
+      // Stop loader when content is properly loaded
+      this.state.is_loading = false;
     },
   },
 
