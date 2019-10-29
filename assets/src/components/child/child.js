@@ -26,7 +26,6 @@ const child = {
 
   data() {
     return {
-      data_from_modal: {},
       title: '',
     };
   },
@@ -51,11 +50,7 @@ const child = {
 
       // TODO: Auto search by identities
     } else {
-      CLIENT.invoke(
-        'notify',
-        this.$t('examples.messages.no_ticket_requester'),
-        'error'
-      );
+      zdClient.notify(this.$t('examples.messages.no_ticket_requester'), true);
     }
   },
 
@@ -75,8 +70,8 @@ const child = {
         location: 'modal',
         url: `assets/iframeModal.html#parent_guid=${ CLIENT._instanceGuid }`,
         size: {
-          width: '350px',
-          height: '300px'
+          width: '25em',
+          height: '10em'
         }
       }).then(async (modalContext) => {
         let instanceGuid = modalContext['instances.create'][0].instanceGuid;
@@ -93,10 +88,9 @@ const child = {
       });
     },
     async editModal(args) {
-      this.data_from_modal = args;
-
+      // Set title
       this.title = this.$t('examples.hello_world_from_name', {
-        name: this.data_from_modal.form.name,
+        name: args.form.name,
       });
 
       const EVENT_FLAG = await CLIENT.has('modalEdited', this.editModal);

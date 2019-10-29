@@ -5,7 +5,13 @@ let SETTINGS = null;
 let CURRENT_USER = null;
 let TICKET = null;
 
-const ZDClient = {
+const zdClient = {
+
+  /* ------------------------------------------------------------------------ */
+
+  init() {
+    CLIENT = ZAFClient.init();
+  },
 
   /* ------------------------------------------------------------------------ */
 
@@ -18,20 +24,14 @@ const ZDClient = {
         CURRENT_USER = (await CLIENT.get('currentUser'))['currentUser'];
 
         return cb(data);
-      })
-    }
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  init() {
-    CLIENT = ZAFClient.init();
+      });
+    },
   },
 
   /* ------------------------------------------------------------------------ */
 
   /**
-  * Set getters for privite objects
+  * Set getters for private objects
   */
   app: {
     get client() {
@@ -70,6 +70,21 @@ const ZDClient = {
   */
   resizeFrame(appHeight) {
     CLIENT.invoke('resize', {width: '100%', height: `${appHeight}px`});
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  // Invoke notify for Zendesk frame
+  notify(message, isError=false) {
+    let error;
+
+    if (isError) {
+      error = 'error';
+    } else {
+      error = '';
+    }
+
+    CLIENT.invoke('notify', message, error);
   },
 
   /* ------------------------------------------------------------------------ */
@@ -126,7 +141,7 @@ const ZDClient = {
     return {
       is_available: is_available,
       has_requester: has_requester,
-      data: TICKET
+      data: TICKET,
     };
   },
 
@@ -134,11 +149,14 @@ const ZDClient = {
 
   // Get user
   async getUser() {
-    return (await CLIENT.get('user'))['user'];
+    let user = (await CLIENT.get('user'))['user'];
+
+    return user;
   },
 
   /* ------------------------------------------------------------------------ */
 
+  // Get custom field value of entire field
   async getCustomField(fieldId, type) {
     switch (type) {
       case 'VALUE': {
@@ -160,4 +178,4 @@ const ZDClient = {
 
 };
 
-export default ZDClient;
+export default zdClient;

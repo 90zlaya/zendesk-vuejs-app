@@ -8,7 +8,6 @@ export default {
       update: 'Click me to update',
       messages: {
         no_ticket_requester: 'No ticket requester identities found',
-        would_update_data: 'Would update data',
         enter_your_name: 'Enter your name',
       },
     },
