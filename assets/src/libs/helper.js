@@ -96,14 +96,25 @@ export let format = {
   date(date, locale) {
     locale = locale ? locale : 'en-US';
 
-    let cdate = new Date(date);
+    let cDate = new Date(date);
     let options = {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
     };
 
-    return cdate.toLocaleDateString(locale, options);
+    return cDate.toLocaleDateString(locale, options);
+  },
+  objectKeysToArray(objectWithKeys, filterBy) {
+    let formattedArray = [];
+
+    for (let type in objectWithKeys) {
+      if (objectWithKeys[type] === filterBy) {
+        formattedArray.push(type);
+      }
+    }
+
+    return formattedArray;
   },
 }
 

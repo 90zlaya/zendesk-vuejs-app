@@ -54,7 +54,7 @@ const modal = {
   /* ------------------------------------------------------------------------ */
 
   methods: {
-    enableUpdate() {
+    manipulateUpdate() {
       if (this.form.name.length > 0) {
         this.triggers.is_update_disabled = false;
       } else {
@@ -68,26 +68,12 @@ const modal = {
       };
 
       // Trigger modal edit logic
-      this.triggerModalEdited(data);
-    },
-    triggerModalEdited(data) {
-      // Get instance, trigger modal edited and close modal box
-      CLIENT.get('instances').then((instancesData) => {
-        let appClient = null;
-        let instances = instancesData.instances;
-        let appLocation = this.app_state.zd_instance.context.location;
-
-        for (let instanceGuid in instances) {
-          if (instances[instanceGuid].location === appLocation) {
-            appClient = CLIENT.instance(instanceGuid);
-            break;
-          }
-        }
-
-        appClient.trigger('modalEdited', data);
-
-        CLIENT.invoke('destroy');
-      });
+      zdClient.triggerAction(
+        CLIENT,
+        this.app_state.zd_instance.context.location,
+        'modalEdited',
+        data
+      );
     },
   },
 

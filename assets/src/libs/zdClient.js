@@ -54,16 +54,6 @@ const zdClient = {
   /* ------------------------------------------------------------------------ */
 
   /**
-  * It returns true if the app is installed in the instance, false if
-  * it's running locally
-  */
-  isProduction() {
-    return !!this.app.settings['IS_PRODUCTION'];
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  /**
   * It sets the frame height using on the passed value.
   * If no value has been passed, 80 will be set as default heigth.
   * @param {Int} newHeight
@@ -89,13 +79,6 @@ const zdClient = {
 
   /* ------------------------------------------------------------------------ */
 
-  // Get Zendesk Client
-  getClient() {
-    return this.app.client;
-  },
-
-  /* ------------------------------------------------------------------------ */
-
   // Get zdClient Instance
   getInstance() {
     return {
@@ -110,7 +93,18 @@ const zdClient = {
 
   // Get app settings for given item
   getSettings(item) {
-    return this.app.settings[item];
+    if (item === 'IS_PRODUCTION') {
+      return !!this.app.settings[item];
+    } else {
+      return this.app.settings[item];
+    }
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  // Get Zendesk Client
+  getClient() {
+    return this.app.client;
   },
 
   /* ------------------------------------------------------------------------ */
@@ -171,6 +165,28 @@ const zdClient = {
 
         return ticketField;
       }
+    }
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  // Trigger action
+  async triggerAction(client, appLocation, actionName, actionData, toClose=true) {
+    let appClient = null;
+    let instancesData = await client.get('instances');
+    let instances = instancesData.instances;
+
+    for (let instanceGuid in instances) {
+      if (instances[instanceGuid].location === appLocation) {
+        appClient = client.instance(instanceGuid);
+        break;
+      }
+    }
+
+    appClient.trigger(actionName, actionData);
+
+    if (toClose) {
+      client.invoke('destroy');
     }
   },
 

@@ -8,7 +8,7 @@ const modalTemplate = `
         <input
           class="form-control"
           v-model="form.name"
-          v-on:keyup="enableUpdate();"
+          v-on:keyup="manipulateUpdate();"
         />
       </div>
       <div class="form-group">

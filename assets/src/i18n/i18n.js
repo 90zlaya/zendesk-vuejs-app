@@ -18,6 +18,9 @@ const i18n = {
         : 'ltr';
     };
   },
+
+  /* ------------------------------------------------------------------------ */
+
   getTranslationLine(translation, propertyName, propertyParameters) {
     let line = propertyName.split('.').reduce((a, b) => {
       return a[b];
@@ -33,6 +36,9 @@ const i18n = {
       return replaced;
     }
   },
+
+  /* ------------------------------------------------------------------------ */
+
   getTranslation(options) {
     const translation =
       options && options.locale
@@ -43,6 +49,7 @@ const i18n = {
   },
 
   /* ------------------------------------------------------------------------ */
+
 };
 
 export default i18n;
