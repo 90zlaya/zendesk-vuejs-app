@@ -1,13 +1,15 @@
 # vuejs-boilerplate
 > Vue.js boilerplate for custom Zendesk apps
 
-## build setup
+## Build setup
 
 ``` bash
-# to run app locally
-npm start
+# To run app locally
+npm run start
 
-# to create package
-zat validate
-zat package
+# To create package
+npm run validate
+npm run package
 ```
+
+After running app locally you should append `?zat=true` at the end of the URL of your Zendesk instance.
