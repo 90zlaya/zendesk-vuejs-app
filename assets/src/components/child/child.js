@@ -41,7 +41,7 @@ const child = {
 
   mounted() {
     // Get ticket from prop
-    let ticket = this.app_state.ticket;
+    let ticket = this.app_state.ticket;    
 
     // For search by identities
     if (ticket.has_requester) {
