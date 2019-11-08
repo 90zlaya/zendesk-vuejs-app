@@ -44,7 +44,9 @@ const app = {
     zdClient.resizeFrame(this.$el.scrollHeight);
 
     // Initialise app
-    this.initApp();
+    this.initApp().then(() => {
+      // Do something when app is initialised
+    });
   },
 
   /* ------------------------------------------------------------------------ */
