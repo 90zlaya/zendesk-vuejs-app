@@ -1,5 +1,5 @@
-# vuejs-boilerplate
-> Vue.js boilerplate for custom Zendesk apps
+# zendesk-vuejs-app
+> Zendesk & Vue.js app
 
 ## Description
 
