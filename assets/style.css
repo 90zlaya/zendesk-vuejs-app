@@ -47,8 +47,6 @@ hr {
   top: 50%;
   left: 45%;
   width: 3.5em;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
 }
 
 /* -------------------------------------------------------------------------- */

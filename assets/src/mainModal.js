@@ -1,6 +1,6 @@
 import zdClient from './libs/zdClient.js';
 import i18n from './i18n/i18n.js';
-import modal from './components/modal/modal.js';
+import Modal from './components/Modal.js';
 
 let CLIENT = null;
 
@@ -25,7 +25,7 @@ const mainModal = {
 
       new Vue({
         el: '#modal',
-        render: h => h(modal, {
+        render: h => h(Modal, {
           props: {
             app_state: data,
           },

@@ -1,9 +1,9 @@
 # zendesk-vuejs-app
-> Zendesk & Vue.js app
+> Zendesk-Vue.js app
 
 ## Description
 
-Idea is to create simple Vue.js app to demonstrate how this boilerplate should be used and also serve as base for development of custom Zendesk apps.
+Idea is to create simple Vue.js app for Zendesk ecosystem.
 
 ## Look and feel
 
@@ -15,7 +15,7 @@ When we click to open modal box we get input field and a button. For demonstrati
 
 ![][screenshot_modal-text]
 
-On a button click we should have input field value copied to the sidebar and welcome message updated. 
+On a button click we should have input field value copied to the sidebar and welcome message updated.
 
 ![][screenshot_home-text]
 

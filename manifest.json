@@ -16,11 +16,5 @@
       "user_sidebar": "assets/iframe.html"
     }
   },
-  "parameters": [
-    {
-      "name": "IS_PRODUCTION",
-      "type": "hidden",
-      "default": "true"
-    }
-  ]
+  "parameters": []
 }

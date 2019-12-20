@@ -1,6 +1,6 @@
 import zdClient from './libs/zdClient.js';
 import i18n from './i18n/i18n.js';
-import app from './components/app.js';
+import App from './components/App.js';
 
 const main = {
 
@@ -20,7 +20,7 @@ const main = {
 
     new Vue({
       el: '#app',
-      render: h => h(app),
+      render: h => h(App),
     });
   },
 
