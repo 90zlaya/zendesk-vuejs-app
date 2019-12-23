@@ -25,11 +25,11 @@ Notice: Have in mind that these images might stay few commits behind.
 
 ``` bash
 # To run app locally
-npm run start
+zat server
 
 # To create package
-npm run validate
-npm run package
+zat validate
+zat package
 ```
 
 After running app locally you should append `?zat=true` at the end of the URL of your Zendesk instance.
