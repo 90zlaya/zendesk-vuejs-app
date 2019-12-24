@@ -73,7 +73,7 @@ const Modal = {
       // Trigger modal edit logic
       zdClient.triggerAction(
         CLIENT,
-        this.app_state.zd_instance.context.location,
+        this.app_state.zd_instance.context.instanceGuid,
         'modalEdited',
         data
       );

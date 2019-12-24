@@ -171,17 +171,8 @@ const zdClient = {
   /* ------------------------------------------------------------------------ */
 
   // Trigger action
-  async triggerAction(client, appLocation, actionName, actionData, toClose=true) {
-    let appClient = null;
-    let instancesData = await client.get('instances');
-    let instances = instancesData.instances;
-
-    for (let instanceGuid in instances) {
-      if (instances[instanceGuid].location === appLocation) {
-        appClient = client.instance(instanceGuid);
-        break;
-      }
-    }
+  async triggerAction(client, instanceGuid, actionName, actionData, toClose=true) {
+    let appClient = client.instance(instanceGuid);
 
     appClient.trigger(actionName, actionData);
 
