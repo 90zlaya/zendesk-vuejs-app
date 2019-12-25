@@ -3,9 +3,10 @@ const template = `
     <div class="form-group">
       <label>{{ $t('examples.messages.enter_your_name') }}</label>
       <input
-        class="form-control"
         v-model="form.name"
         v-on:keyup="manipulateUpdate();"
+        type="text"
+        class="form-control"
       />
     </div>
     <div class="form-group">

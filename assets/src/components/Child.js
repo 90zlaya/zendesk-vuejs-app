@@ -16,9 +16,6 @@ const template = `
 `;
 
 import zdClient from './../libs/zdClient.js';
-import {
-  splitIdentities,
-} from './../libs/helper.js';
 
 let CLIENT = null;
 
@@ -36,10 +33,6 @@ const Child = {
 
   /* ------------------------------------------------------------------------ */
 
-  components: {},
-
-  /* ------------------------------------------------------------------------ */
-
   data() {
     return {
       title: '',
@@ -52,31 +45,6 @@ const Child = {
     // Get Zendesk client
     CLIENT = zdClient.getClient();
   },
-
-  /* ------------------------------------------------------------------------ */
-
-  mounted() {
-    // Get ticket from prop
-    let ticket = this.app_state.ticket;
-
-    // For search by identities
-    if (ticket.has_requester) {
-      let identities = ticket.data.requester.identities;
-      let splittedIdentities = splitIdentities(identities);
-
-      // TODO: Auto search by identities
-    } else {
-      zdClient.notify(this.$t('examples.messages.no_ticket_requester'), true);
-    }
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  updated() {},
-
-  /* ------------------------------------------------------------------------ */
-
-  computed: {},
 
   /* ------------------------------------------------------------------------ */
 
