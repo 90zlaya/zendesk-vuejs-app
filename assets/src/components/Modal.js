@@ -21,8 +21,6 @@ const template = `
 
 import zdClient from './../libs/zdClient.js';
 
-let CLIENT = null;
-
 const Modal = {
 
   /* ------------------------------------------------------------------------ */
@@ -32,7 +30,7 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   props: {
-    app_state: Object,
+    zd_instance: Object,
   },
 
   /* ------------------------------------------------------------------------ */
@@ -46,13 +44,6 @@ const Modal = {
         is_update_disabled: true,
       },
     };
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  created() {
-    // Get Zendesk client
-    CLIENT = zdClient.getClient();
   },
 
   /* ------------------------------------------------------------------------ */
@@ -73,8 +64,8 @@ const Modal = {
 
       // Trigger modal edit logic
       zdClient.triggerAction(
-        CLIENT,
-        this.app_state.zd_instance.context.instanceGuid,
+        zdClient.app.client,
+        this.zd_instance.context.instanceGuid,
         'modalEdited',
         data
       );

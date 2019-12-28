@@ -1,6 +1,6 @@
 const template = `
   <div>
-    <Child :app_state=state></Child>
+    <Child :zd_instance=zd_instance></Child>
   </div>
 `;
 
@@ -23,9 +23,7 @@ const App = {
 
   data() {
     return {
-      state: {
-        zd_instance: {},
-      },
+      zd_instance: {},
     };
   },
 
@@ -33,7 +31,7 @@ const App = {
 
   created() {
     // Get Zendesk instance
-    this.state.zd_instance = zdClient.getInstance();
+    this.zd_instance = zdClient.getInstance();
   },
 
   /* ------------------------------------------------------------------------ */

@@ -53,13 +53,6 @@ const zdClient = {
 
   /* ------------------------------------------------------------------------ */
 
-  // Get Zendesk Client
-  getClient() {
-    return this.app.client;
-  },
-
-  /* ------------------------------------------------------------------------ */
-
   // Get zdClient Instance
   getInstance() {
     return {

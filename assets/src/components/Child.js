@@ -17,8 +17,6 @@ const template = `
 
 import zdClient from './../libs/zdClient.js';
 
-let CLIENT = null;
-
 const Child = {
 
   /* ------------------------------------------------------------------------ */
@@ -28,7 +26,7 @@ const Child = {
   /* ------------------------------------------------------------------------ */
 
   props: {
-    app_state: Object,
+    zd_instance: Object,
   },
 
   /* ------------------------------------------------------------------------ */
@@ -41,31 +39,24 @@ const Child = {
 
   /* ------------------------------------------------------------------------ */
 
-  created() {
-    // Get Zendesk client
-    CLIENT = zdClient.getClient();
-  },
-
-  /* ------------------------------------------------------------------------ */
-
   methods: {
     openModal() {
-      CLIENT.invoke('instances.create', {
+      zdClient.app.client.invoke('instances.create', {
         location: 'modal',
-        url: `assets/iframeModal.html#parent_guid=${ CLIENT._instanceGuid }`,
+        url: `assets/iframeModal.html#parent_guid=${ zdClient.app.client._instanceGuid }`,
         size: {
           width: '25em',
           height: '10em'
         }
       }).then(async (modalContext) => {
         let instanceGuid = modalContext['instances.create'][0].instanceGuid;
-        let modalClient = CLIENT.instance(instanceGuid);
+        let modalClient = zdClient.app.client.instance(instanceGuid);
 
-        CLIENT.on('modalEdited', this.editModal);
+        zdClient.app.client.on('modalEdited', this.editModal);
 
         modalClient.on('modalReady', () => {
           // Pass data to modal here
-          let data = this.app_state;
+          let data = this.zd_instance;
 
           modalClient.trigger('drawData', data);
         });
@@ -77,10 +68,10 @@ const Child = {
         name: args.form.name,
       });
 
-      const EVENT_FLAG = await CLIENT.has('modalEdited', this.editModal);
+      const EVENT_FLAG = await zdClient.app.client.has('modalEdited', this.editModal);
 
       if (EVENT_FLAG){
-        CLIENT.off('modalEdited', this.editModal);
+        zdClient.app.client.off('modalEdited', this.editModal);
       }
     },
   },
