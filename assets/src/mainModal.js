@@ -15,14 +15,14 @@ const mainModal = {
 
   initVueApp() {
     zdClient.app.client.trigger('modalReady');
-    zdClient.app.client.on('drawData', (data) => {
-      Vue.use(i18n, zdClient.getInstance()['current_user']);
+    zdClient.app.client.on('drawData', (dataForModal) => {
+      Vue.use(i18n, zdClient.app.currentUser);
 
       new Vue({
         el: '#modal',
         render: h => h(Modal, {
           props: {
-            zd_instance: data,
+            dataForModal,
           },
         }),
       });

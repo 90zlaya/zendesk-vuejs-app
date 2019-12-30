@@ -3,8 +3,8 @@ const template = `
     <div class="form-group">
       <label>{{ $t('examples.messages.enter_your_name') }}</label>
       <input
-        v-model="form.name"
-        v-on:keyup="manipulateUpdate();"
+        v-model="inputText"
+        v-on:keyup="toEnableInput()"
         type="text"
         class="form-control"
       />
@@ -12,7 +12,7 @@ const template = `
     <div class="form-group">
       <button
         v-on:click="update();"
-        :disabled="triggers.is_update_disabled"
+        :disabled="is_update_disabled"
         class="c-btn c-btn--sm c-btn--primary col-12"
       >{{ $t('examples.update') }}</button>
     </div>
@@ -30,45 +30,36 @@ const Modal = {
   /* ------------------------------------------------------------------------ */
 
   props: {
-    zd_instance: Object,
+    dataForModal: Object,
   },
 
   /* ------------------------------------------------------------------------ */
 
   data() {
     return {
-      form: {
-        name: '',
-      },
-      triggers: {
-        is_update_disabled: true,
-      },
+      inputText: '',
+      is_update_disabled: true,
     };
   },
 
   /* ------------------------------------------------------------------------ */
 
   methods: {
-    manipulateUpdate() {
-      if (this.form.name.length > 0) {
-        this.triggers.is_update_disabled = false;
+    toEnableInput() {
+      if (this.inputText.length > 0) {
+        this.is_update_disabled = false;
       } else {
-        this.triggers.is_update_disabled = true;
+        this.is_update_disabled = true;
       }
     },
     update() {
-      // Set data to be passed from modal
-      let data = {
-        form: this.form,
-      };
+      let appClient = zdClient.app.client.instance(this.dataForModal.appInstanceGuid);
 
-      // Trigger modal edit logic
-      zdClient.triggerAction(
-        zdClient.app.client,
-        this.zd_instance.context.instanceGuid,
-        'modalEdited',
-        data
-      );
+      appClient.trigger('modalEdited', {
+        inputText: this.inputText,
+      });
+
+      zdClient.app.client.invoke('destroy');
     },
   },
 

@@ -14,7 +14,7 @@ const main = {
   /* ------------------------------------------------------------------------ */
 
   initVueApp() {
-    Vue.use(i18n, zdClient.getInstance()['current_user']);
+    Vue.use(i18n, zdClient.app.currentUser);
 
     new Vue({
       el: '#app',

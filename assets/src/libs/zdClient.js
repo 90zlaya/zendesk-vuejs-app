@@ -53,29 +53,6 @@ const zdClient = {
 
   /* ------------------------------------------------------------------------ */
 
-  // Get zdClient Instance
-  getInstance() {
-    return {
-      context: this.app.context,
-      current_user: this.app.currentUser,
-    };
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  // Trigger action
-  async triggerAction(client, instanceGuid, actionName, actionData, toClose=true) {
-    let appClient = client.instance(instanceGuid);
-
-    appClient.trigger(actionName, actionData);
-
-    if (toClose) {
-      client.invoke('destroy');
-    }
-  },
-
-  /* ------------------------------------------------------------------------ */
-
 };
 
 export default zdClient;

@@ -26,7 +26,7 @@ const Child = {
   /* ------------------------------------------------------------------------ */
 
   props: {
-    zd_instance: Object,
+    app_state: Object,
   },
 
   /* ------------------------------------------------------------------------ */
@@ -56,7 +56,7 @@ const Child = {
 
         modalClient.on('modalReady', () => {
           // Pass data to modal here
-          let data = this.zd_instance;
+          let data = this.app_state;
 
           modalClient.trigger('drawData', data);
         });
@@ -65,7 +65,7 @@ const Child = {
     async editModal(args) {
       // Set title
       this.title = this.$t('examples.hello_world_from_name', {
-        name: args.form.name,
+        name: args.inputText,
       });
 
       const EVENT_FLAG = await zdClient.app.client.has('modalEdited', this.editModal);
