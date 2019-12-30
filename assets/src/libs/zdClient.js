@@ -53,6 +53,38 @@ const zdClient = {
 
   /* ------------------------------------------------------------------------ */
 
+  // Open modal box
+  openModal(dataForModal) {
+    CLIENT.invoke('instances.create', {
+      location: 'modal',
+      url: `assets/iframeModal.html#parent_guid=${ CLIENT._instanceGuid }`,
+      size: {
+        width: '25em',
+        height: '10em'
+      }
+    }).then(async (modalContext) => {
+      let instanceGuid = modalContext['instances.create'][0].instanceGuid;
+      let modalClient = CLIENT.instance(instanceGuid);
+
+      modalClient.on('modalReady', () => {
+        modalClient.trigger('drawData', dataForModal);
+      });
+    });
+  },
+
+  /* ------------------------------------------------------------------------ */
+
+  // Remove trigger
+  async removeTrigger(triggerName, cbFunction) {
+    const EVENT_FLAG = await CLIENT.has(triggerName, cbFunction);
+
+    if (EVENT_FLAG){
+      CLIENT.off(triggerName, cbFunction);
+    }
+  },
+
+  /* ------------------------------------------------------------------------ */
+
 };
 
 export default zdClient;

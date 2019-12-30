@@ -1,6 +1,6 @@
 const template = `
   <div>
-    <Child :app_state=state></Child>
+    <Child></Child>
   </div>
 `;
 
@@ -22,18 +22,7 @@ const App = {
   /* ------------------------------------------------------------------------ */
 
   data() {
-    return {
-      state: {
-        appInstanceGuid: '',
-      },
-    };
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  created() {
-    // Get app instanceGuid from context
-    this.state.appInstanceGuid = zdClient.app.context.instanceGuid;
+    return {};
   },
 
   /* ------------------------------------------------------------------------ */
