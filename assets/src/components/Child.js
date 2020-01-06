@@ -35,7 +35,7 @@ const Child = {
 
   methods: {
     openModalBox() {
-      // Open modal
+      // Open modal - this is async method
       zdClient.openModal({
         appInstanceGuid: zdClient.app.context.instanceGuid,
       });

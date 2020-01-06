@@ -42,11 +42,7 @@ const zdClient = {
 
   /* ------------------------------------------------------------------------ */
 
-  /**
-  * It sets the frame height using on the passed value.
-  * If no value has been passed, 80 will be set as default heigth.
-  * @param {Int} newHeight
-  */
+  // Sets the frame height using on the passed value
   resizeFrame(appHeight) {
     CLIENT.invoke('resize', {width: '100%', height: `${appHeight}px`});
   },
@@ -54,21 +50,21 @@ const zdClient = {
   /* ------------------------------------------------------------------------ */
 
   // Open modal box
-  openModal(dataForModal) {
-    CLIENT.invoke('instances.create', {
+  async openModal(dataForModal) {
+    let modalContext = await CLIENT.invoke('instances.create', {
       location: 'modal',
       url: `assets/iframeModal.html#parent_guid=${ CLIENT._instanceGuid }`,
       size: {
         width: '25em',
         height: '10em'
       }
-    }).then(async (modalContext) => {
-      let instanceGuid = modalContext['instances.create'][0].instanceGuid;
-      let modalClient = CLIENT.instance(instanceGuid);
+    });
 
-      modalClient.on('modalReady', () => {
-        modalClient.trigger('drawData', dataForModal);
-      });
+    let instanceGuid = modalContext['instances.create'][0].instanceGuid;
+    let modalClient = CLIENT.instance(instanceGuid);
+
+    modalClient.on('modalReady', () => {
+      modalClient.trigger('drawData', dataForModal);
     });
   },
 

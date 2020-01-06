@@ -4,6 +4,7 @@ const i18n = {
 
   /* ------------------------------------------------------------------------ */
 
+  // Install language
   install(Vue, options) {
     const t = this.getTranslation(options);
     const RTL_LOCALES = ['ar', 'he'];
@@ -21,6 +22,7 @@ const i18n = {
 
   /* ------------------------------------------------------------------------ */
 
+  // Get translation line (dynamic translation lines support)
   getTranslationLine(translation, propertyName, propertyParameters) {
     let line = propertyName.split('.').reduce((a, b) => {
       return a[b];
@@ -39,6 +41,7 @@ const i18n = {
 
   /* ------------------------------------------------------------------------ */
 
+  // Get translation from dictionary
   getTranslation(options) {
     const translation =
       options && options.locale
