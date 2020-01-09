@@ -1,11 +1,11 @@
 const template = `
-  <div>
-    <Child></Child>
+  <div class="container">
+    <DisplayText></DisplayText>
   </div>
 `;
 
 import zdClient from './../libs/zdClient.js';
-import Child from './Child.js';
+import DisplayText from './import/DisplayText.js';
 
 const App = {
 
@@ -16,13 +16,7 @@ const App = {
   /* ------------------------------------------------------------------------ */
 
   components: {
-    Child,
-  },
-
-  /* ------------------------------------------------------------------------ */
-
-  data() {
-    return {};
+    DisplayText,
   },
 
   /* ------------------------------------------------------------------------ */

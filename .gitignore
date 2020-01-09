@@ -1,9 +1,4 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files
 
 .zat
-.config.json
-.settings.json
-config.json
-settings.json
-.sass-cache/
 tmp/
