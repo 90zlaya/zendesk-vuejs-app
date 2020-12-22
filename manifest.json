@@ -1,5 +1,5 @@
 {
-  "name": "Vue.js app",
+  "name": "Zendesk-Vue.js app",
   "author": {
     "name": "Zendesk Professional Services",
     "email": "services@zendesk.com",
@@ -11,7 +11,7 @@
   "frameworkVersion": "2.0",
   "location": {
     "support": {
-      "ticket_sidebar": "assets/iframe.html"
+      "ticket_sidebar": "assets/app.html"
     }
   },
   "parameters": []

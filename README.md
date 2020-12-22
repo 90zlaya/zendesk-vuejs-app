@@ -19,15 +19,15 @@ Idea is to create simple Vue.js app for Zendesk ecosystem. Functionality given t
 
 Currently app looks like this in ticket sidebar:
 
-<img src=".extras/screenshots/home-blank.png?clear_cache=1" alt="Home" width="350"/>
+<img src=".extras/screenshots/home-blank.png?clear_cache=2" alt="Home" width="350"/>
 
 When we click to open modal box we get input field and a button. For demonstration purposes text is added to the input field:
 
-<img src=".extras/screenshots/modal-text.png?clear_cache=1" alt="Modal Text" width="350"/>
+<img src=".extras/screenshots/modal-text.png?clear_cache=2" alt="Modal Text" width="350"/>
 
 On a button click we should have input field value copied to the sidebar and welcome message updated.
 
-<img src=".extras/screenshots/home-text.png?clear_cache=1" alt="Home Text" width="350"/>
+<img src=".extras/screenshots/home-text.png?clear_cache=2" alt="Home Text" width="350"/>
 
 
 Notice: Have in mind that these images might stay few commits behind.

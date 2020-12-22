@@ -1,6 +1,9 @@
 {
   "app": {
-    "description": "Vue.js custom app for Zendesk ecosystem",
-    "name": "Vue.js app"
+    "name": "Zendesk-Vue.js app",
+    "short_description": "Simple Zendesk ticket sidebar app implemented using Vue.js framework",
+    "long_description": "Zendesk-Vue.js app for opening modal box from ticket sidebar and returning user's input from modal box back to to the ticket sidebar",
+    "installation_instructions": "Just hit install button...",
+    "parameters": {}
   }
 }
