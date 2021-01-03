@@ -1,9 +1,9 @@
 {
   "name": "Zendesk-Vue.js app",
   "author": {
-    "name": "Zendesk Professional Services",
-    "email": "services@zendesk.com",
-    "url": "https://support.zendesk.com"
+    "name": "Zlatan Stajic",
+    "email": "contact@zlatanstajic.com",
+    "url": "https://www.zlatanstajic.com"
   },
   "defaultLocale": "en",
   "private": true,
