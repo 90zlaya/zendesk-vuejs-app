@@ -3,19 +3,19 @@
 
 ## Table of Contents
 
-1. [Description](#description)
-1. [Look and Feel](#look-and-feel)
-1. [Build Setup](#build-setup)
+* [Description](#description)
+* [Look and Feel](#look-and-feel)
+* [Build Setup](#build-setup)
 
 ***
 
-1. ### Description
+### Description
 
 Idea is to create simple Vue.js app for Zendesk ecosystem. Functionality given to the app is opening modal box from ticket sidebar and returning user's input from modal box back to to the ticket sidebar. 
 
 [⬆ back to top](#table-of-contents)
 
-2. ### Look and feel
+### Look and Feel
 
 Currently app looks like this in ticket sidebar:
 
@@ -34,7 +34,7 @@ Notice: Have in mind that these images might stay few commits behind.
 
 [⬆ back to top](#table-of-contents)
 
-3. ### Build setup
+### Build Setup
 
 You'll need [Zendesk Apps Tools](https://develop.zendesk.com/hc/en-us/articles/360001075048-Installing-and-using-the-Zendesk-apps-tools) installed on your machine before being able to run app or create package. 
 
